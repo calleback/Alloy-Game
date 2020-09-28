@@ -106,7 +106,7 @@
             {
                 "type": "UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "mesh.userMaterial",
-                "value": "{\"m_Value\":{\"fileID\":10758,\"guid\":\"0000000000000000f000000000000000\",\"type\":0}}"
+                "value": "{\"m_Value\":{\"fileID\":2100000,\"guid\":\"73c176f402d2c2f4d929aa5da7585d17\",\"type\":2}}"
             },
             {
                 "type": "UnityEditor.StaticEditorFlags, UnityEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
