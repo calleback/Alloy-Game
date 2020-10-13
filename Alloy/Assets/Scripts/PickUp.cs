@@ -5,6 +5,8 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public Transform theDest;
+    public GameObject xhairRound;
+    public GameObject xhairSquare;
 
     void OnMouseDown()
     {
@@ -13,6 +15,8 @@ public class PickUp : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
         this.transform.position = theDest.position;
         this.transform.parent = GameObject.Find("Destination").transform;
+        xhairSquare.SetActive(true);
+        xhairRound.SetActive(false);
     }
 
     void OnMouseUp()
@@ -21,5 +25,7 @@ public class PickUp : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().freezeRotation = false;
         GetComponent<Rigidbody>().isKinematic = false;
+        xhairSquare.SetActive(false);
+        xhairRound.SetActive(true);
     }
 }
