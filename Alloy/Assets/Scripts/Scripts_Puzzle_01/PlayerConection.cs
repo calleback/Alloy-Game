@@ -47,12 +47,12 @@ public class PlayerConection : NetworkBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Spacebar was hit -- we could instruct the server
-            // to do something with our unit.
-            CmdMoveUnitUp();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    // Spacebar was hit -- we could instruct the server
+        //    // to do something with our unit.
+        //    CmdMoveUnitUp();
+        //}
     }
 
     ////////////////// COMMANDS
@@ -68,19 +68,21 @@ public class PlayerConection : NetworkBehaviour
 
         myPlayerUnit = go;
 
+        go.GetComponent<NetworkIdentity>().AssignClientAuthority( connectionToClient);
+
         // Now that the object exists on the server, propogate it to all
         // the clients (and also wire up the NetworkIdentity)
         NetworkServer.Spawn(go);
     }
 
-    [Command]
-    void CmdMoveUnitUp()
-    {
-        if(myPlayerUnit == null)
-        {
-            return;
-        }
+    //[Command]
+    //void CmdMoveUnitUp()
+    //{
+    //    if(myPlayerUnit == null)
+    //    {
+    //        return;
+    //    }
 
-        myPlayerUnit.transform.Translate(-1, 1, 0);
-    }
+    //    myPlayerUnit.transform.Translate(-1, 1, 0);
+    //}
 }
