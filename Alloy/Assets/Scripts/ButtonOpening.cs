@@ -40,14 +40,14 @@ public class ButtonOpening : MonoBehaviour
     //if the player touches the button buttonIsPressed bool is set to true
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !buttonIsPressed || other.tag == "InteractObject" && !buttonIsPressed)
+        if (other.tag == "Player" && !buttonIsPressed || other.tag == "IntObj" && !buttonIsPressed)
         {
             buttonIsPressed = true;
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player" && buttonIsPressed || other.tag == "InteractObject" && buttonIsPressed)
+        if (other.tag == "Player" && buttonIsPressed || other.tag == "IntObj" && buttonIsPressed)
         {
             buttonIsPressed = false;
         }

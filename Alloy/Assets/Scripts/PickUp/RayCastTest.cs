@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class RayCastTest : MonoBehaviour
@@ -10,6 +11,9 @@ public class RayCastTest : MonoBehaviour
 
     public Transform rightHand;
 
+    bool isHoldingItem = false;
+    bool canEnableXhair = true;
+
     //används inte än
     private float fadeRate = 1f;
     private Image image;
@@ -18,9 +22,10 @@ public class RayCastTest : MonoBehaviour
     public GameObject defaultXhair;
     public GameObject pickupXhair;
 
+    private GameObject tempObj;
+
     void Start()
     {
-        
     }
     private void Update()
     {
@@ -34,12 +39,12 @@ public class RayCastTest : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.tag == "IntObj" && hit.distance > pickupRange)
+            if (hit.transform.tag == "IntObj" && hit.distance > pickupRange && canEnableXhair)
             {
                 defaultXhair.SetActive(true);
                 pickupXhair.SetActive(false);
             }
-            if (hit.transform.tag == "IntObj" && hit.distance < pickupRange)
+            if (hit.transform.tag == "IntObj" && hit.distance < pickupRange && canEnableXhair)
             {
                 defaultXhair.SetActive(false);
                 pickupXhair.SetActive(true);
@@ -49,9 +54,13 @@ public class RayCastTest : MonoBehaviour
                 defaultXhair.SetActive(false);
                 pickupXhair.SetActive(false);
             }
-            if (hit.transform.tag == "IntObj" && hit.distance < pickupRange && Input.GetKeyDown(KeyCode.Mouse0))
+            if (hit.transform.tag == "IntObj" && hit.distance < pickupRange && Input.GetKeyDown(KeyCode.Mouse0) && !isHoldingItem)
             {
-                Transform tempHold = hit.transform;
+                defaultXhair.SetActive(false);
+                pickupXhair.SetActive(false);
+                // ^(Precaution to fix a small bug)
+
+                tempObj = hit.transform.gameObject;
 
                 hit.transform.GetComponent<Rigidbody>().useGravity = false;
                 hit.transform.GetComponent<Rigidbody>().freezeRotation = true;
@@ -59,13 +68,19 @@ public class RayCastTest : MonoBehaviour
                 hit.transform.position = rightHand.position;
                 hit.transform.parent = GameObject.Find("HoldObject").transform;
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    tempHold.transform.parent = null;
-                    tempHold.GetComponent<Rigidbody>().useGravity = true;
-                    tempHold.GetComponent<Rigidbody>().freezeRotation = false;
-                    tempHold.GetComponent<Rigidbody>().isKinematic = false;
-                }
+                canEnableXhair = false;
+                isHoldingItem = true;
+            }
+            // Change to GetKeyDown (KEY) If you dont want to drop item when letting go of button
+            if (Input.GetKeyUp(KeyCode.Mouse0) && isHoldingItem)
+            {
+                tempObj.transform.parent = null;
+                tempObj.GetComponent<Rigidbody>().useGravity = true;
+                tempObj.GetComponent<Rigidbody>().freezeRotation = false;
+                tempObj.GetComponent<Rigidbody>().isKinematic = false;
+
+                canEnableXhair = true;
+                isHoldingItem = false;
             }
         }
     }
