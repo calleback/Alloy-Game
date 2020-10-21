@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8371323598038964723}
   - component: {fileID: 8371323598038964724}
-  - component: {fileID: 8371323598038964725}
+  - component: {fileID: 8338603386643762644}
   - component: {fileID: 6283543975002378440}
   - component: {fileID: -571261620849669557}
   m_Layer: 0
@@ -54,7 +54,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8371323598038964725
+--- !u!114 &8338603386643762644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,18 +63,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8371323598038964726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9bcba9591b339747b8e200b3d4ae10b, type: 3}
+  m_Script: {fileID: 11500000, guid: b9002bab1016325449dd34fb3fe4a830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   controller: {fileID: 8371323598038964724}
   speed: 8
-  gravity: -19.62
+  gravity: -20
   jumpHeight: 1.5
   groundCheck: {fileID: 8371323599538374438}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 512
+  playerCamera: {fileID: 8371323598933272027}
 --- !u!114 &6283543975002378440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8371323598933272026
 Transform:
   m_ObjectHideFlags: 0
