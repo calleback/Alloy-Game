@@ -1,13 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RayCastTest : MonoBehaviour
 {
     public Camera cameraMain;
-    public float crosshairRange;
     public float pickupRange;
-    void Update()
+
+    //används inte än
+    private float fadeRate = 1f;
+    private Image image;
+    private float targetAlpha;
+
+    public GameObject defaultXhair;
+    public GameObject pickupXhair;
+
+    void Start()
+    {
+        
+    }
+    private void Update()
     {
         RayCastCheck();
     }
@@ -19,13 +32,20 @@ public class RayCastTest : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.tag == "IntObj")
+            if (hit.transform.tag == "IntObj" && hit.distance > pickupRange)
             {
-                //draw crosshair
+                defaultXhair.SetActive(true);
+                pickupXhair.SetActive(false);
             }
-            if (hit.distance <= pickupRange)
+            if (hit.transform.tag == "IntObj" && hit.distance < pickupRange)
             {
-                //draw pickup crosshair and allow player to pick up object
+                defaultXhair.SetActive(false);
+                pickupXhair.SetActive(true);
+            }
+            else if (hit.transform.tag != "IntObj")
+            {
+                defaultXhair.SetActive(false);
+                pickupXhair.SetActive(false);
             }
         }
     }
