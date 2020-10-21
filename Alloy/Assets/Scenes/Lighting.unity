@@ -3524,7 +3524,7 @@ GameObject:
   - component: {fileID: 388945169}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: InteractObject
+  m_TagString: IntObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15803,7 +15803,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20104
+  m_Name: pb_Mesh21462
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16764,7 +16764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1900378521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17418,6 +17418,7 @@ GameObject:
   - component: {fileID: 2072697524}
   - component: {fileID: 2072697523}
   - component: {fileID: 2072697522}
+  - component: {fileID: 2072697525}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Player
@@ -17480,6 +17481,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2072697525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072697521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8935a72c4629f3c49971cfe6652f1fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMain: {fileID: 758965921}
+  pickupRange: 3
+  defaultXhair: {fileID: 1900378520}
+  pickupXhair: {fileID: 1510911927}
 --- !u!1 &2084007358
 GameObject:
   m_ObjectHideFlags: 0
