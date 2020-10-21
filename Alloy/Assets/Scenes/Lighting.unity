@@ -3521,7 +3521,6 @@ GameObject:
   - component: {fileID: 388945165}
   - component: {fileID: 388945164}
   - component: {fileID: 388945163}
-  - component: {fileID: 388945169}
   m_Layer: 0
   m_Name: Cube
   m_TagString: IntObj
@@ -3837,21 +3836,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &388945169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388945162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08cfee9270629e8428820faa2e5e3f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theDest: {fileID: 1436454906}
-  xhairRound: {fileID: 1900378520}
-  xhairSquare: {fileID: 1510911927}
 --- !u!1 &458768768
 GameObject:
   m_ObjectHideFlags: 0
@@ -11543,7 +11527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436454906}
   m_Layer: 0
-  m_Name: Destination
+  m_Name: HoldObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17495,6 +17479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMain: {fileID: 758965921}
   pickupRange: 3
+  rightHand: {fileID: 1436454906}
   defaultXhair: {fileID: 1900378520}
   pickupXhair: {fileID: 1510911927}
 --- !u!1 &2084007358
