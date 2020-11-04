@@ -7,9 +7,14 @@ public class PickupObject : MonoBehaviour
     public Camera mainCamera;
 
     bool carrying;
+    bool canEnableXhair = true;
+
     GameObject carriedObject;
-    public float distance;
-    public float smooth;
+    public GameObject defaultXhair;
+    public GameObject pickupXhair;
+
+    public float distance, smooth, pickupRange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +23,8 @@ public class PickupObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CrosshairCheck();
+
         if (carrying)
         {
             Carry(carriedObject);
@@ -27,6 +34,7 @@ public class PickupObject : MonoBehaviour
         {
             Pickup();
         }
+
     }
 
     void Carry(GameObject o)
@@ -42,14 +50,19 @@ public class PickupObject : MonoBehaviour
 
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(x, y));
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit) && hit.distance < pickupRange)
             {
+                defaultXhair.SetActive(false);
+                pickupXhair.SetActive(false);
+                canEnableXhair = false;
+
                 Pickupable p = hit.collider.GetComponent<Pickupable>();
                 if (p != null)
                 {
                     carrying = true;
                     carriedObject = p.gameObject;
-                    p.GetComponent<Rigidbody>().isKinematic = true;
+                    p.GetComponent<Rigidbody>().freezeRotation = true;
+                    p.GetComponent<Rigidbody>().useGravity = false;          
                 }
             }
         }
@@ -63,8 +76,35 @@ public class PickupObject : MonoBehaviour
     }
     void DropObject()
     {
+        canEnableXhair = true;
         carrying = false;
-        carriedObject.GetComponent<Rigidbody>().isKinematic = false;
+        carriedObject.GetComponent<Rigidbody>().freezeRotation = false;
+        carriedObject.GetComponent<Rigidbody>().useGravity = true;
         carriedObject = null;
+    }
+    void CrosshairCheck()
+    {
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 3000, Color.red);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag == "IntObj" && hit.distance > pickupRange && canEnableXhair)
+            {
+                defaultXhair.SetActive(true);
+                pickupXhair.SetActive(false);
+            }
+            if (hit.transform.tag == "IntObj" && hit.distance < pickupRange && canEnableXhair)
+            {
+                defaultXhair.SetActive(false);
+                pickupXhair.SetActive(true);
+            }
+            else if (hit.transform.tag != "IntObj")
+            {
+                defaultXhair.SetActive(false);
+                pickupXhair.SetActive(false);
+            }
+        }
     }
 }
