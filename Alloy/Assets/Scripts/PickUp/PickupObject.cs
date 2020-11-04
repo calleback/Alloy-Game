@@ -5,7 +5,6 @@ using UnityEngine;
 public class PickupObject : MonoBehaviour
 {
     public Camera mainCamera;
-    public Transform playerPosition;
 
     bool carrying;
     bool canEnableXhair = true;
@@ -39,7 +38,6 @@ public class PickupObject : MonoBehaviour
         {
             Pickup();
         }
-
     }
 
     void Carry(GameObject o)
@@ -75,7 +73,7 @@ public class PickupObject : MonoBehaviour
     }
     void CheckDrop()
     {
-        float dist = Vector3.Distance(playerPosition.position, carriedObject.transform.position);
+        float dist = Vector3.Distance(this.transform.position, carriedObject.transform.position);
 
         print(dist);
 
