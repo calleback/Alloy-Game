@@ -10,16 +10,19 @@ public class PickupObject : MonoBehaviour
     bool canEnableXhair = true;
 
     GameObject carriedObject;
-    public GameObject defaultXhair;
-    public GameObject pickupXhair;
-    public GameObject holdingXhair;
+    public GameObject defaultXhair, lookatXhair, pickupXhair, holdingXhair;
 
+    /*[float distance = how far forward the player holds the picked up item from the camera POV]
+      [float smooth = how fast the object follows the player]
+      [float pickupRange = how close the player can stand to still pick up the object]
+      [float dropDistance = the distance the player can walk from the held object before it drops]*/
     public float distance, smooth, pickupRange, dropDistance;
 
     // Start is called before the first frame update
     void Start()
     {
-        defaultXhair.SetActive(false);
+        defaultXhair.SetActive(true);
+        lookatXhair.SetActive(false);
         pickupXhair.SetActive(false);
         holdingXhair.SetActive(false);
     }
@@ -56,6 +59,7 @@ public class PickupObject : MonoBehaviour
             if (Physics.Raycast(ray, out hit) && hit.distance < pickupRange)
             {
                 defaultXhair.SetActive(false);
+                lookatXhair.SetActive(false);
                 pickupXhair.SetActive(false);
                 holdingXhair.SetActive(true);
                 canEnableXhair = false;
@@ -85,6 +89,7 @@ public class PickupObject : MonoBehaviour
     void DropObject()
     {
         canEnableXhair = true;
+        defaultXhair.SetActive(true);
         holdingXhair.SetActive(false);
         carrying = false;
         carriedObject.GetComponent<Rigidbody>().freezeRotation = false;
@@ -101,17 +106,17 @@ public class PickupObject : MonoBehaviour
         {
             if (hit.transform.tag == "IntObj" && hit.distance > pickupRange && canEnableXhair)
             {
-                defaultXhair.SetActive(true);
+                lookatXhair.SetActive(true);
                 pickupXhair.SetActive(false);
             }
             if (hit.transform.tag == "IntObj" && hit.distance < pickupRange && canEnableXhair)
             {
-                defaultXhair.SetActive(false);
+                lookatXhair.SetActive(false);
                 pickupXhair.SetActive(true);
             }
             else if (hit.transform.tag != "IntObj")
             {
-                defaultXhair.SetActive(false);
+                lookatXhair.SetActive(false);
                 pickupXhair.SetActive(false);
             }
         }
