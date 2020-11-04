@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickupObject : MonoBehaviour
 {
     public Camera mainCamera;
+    public Transform playerPosition;
 
     bool carrying;
     bool canEnableXhair = true;
@@ -12,12 +13,16 @@ public class PickupObject : MonoBehaviour
     GameObject carriedObject;
     public GameObject defaultXhair;
     public GameObject pickupXhair;
+    public GameObject holdingXhair;
 
-    public float distance, smooth, pickupRange;
+    public float distance, smooth, pickupRange, dropDistance;
 
     // Start is called before the first frame update
     void Start()
     {
+        defaultXhair.SetActive(false);
+        pickupXhair.SetActive(false);
+        holdingXhair.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,6 +59,7 @@ public class PickupObject : MonoBehaviour
             {
                 defaultXhair.SetActive(false);
                 pickupXhair.SetActive(false);
+                holdingXhair.SetActive(true);
                 canEnableXhair = false;
 
                 Pickupable p = hit.collider.GetComponent<Pickupable>();
@@ -69,7 +75,11 @@ public class PickupObject : MonoBehaviour
     }
     void CheckDrop()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        float dist = Vector3.Distance(playerPosition.position, carriedObject.transform.position);
+
+        print(dist);
+
+        if (Input.GetKeyDown(KeyCode.E) || dist >= dropDistance)
         {
             DropObject();
         }
@@ -77,6 +87,7 @@ public class PickupObject : MonoBehaviour
     void DropObject()
     {
         canEnableXhair = true;
+        holdingXhair.SetActive(false);
         carrying = false;
         carriedObject.GetComponent<Rigidbody>().freezeRotation = false;
         carriedObject.GetComponent<Rigidbody>().useGravity = true;
