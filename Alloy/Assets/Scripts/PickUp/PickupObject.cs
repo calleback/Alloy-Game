@@ -70,7 +70,7 @@ public class PickupObject : MonoBehaviour
                     carrying = true;
                     carriedObject = p.gameObject;
                     p.GetComponent<Rigidbody>().freezeRotation = true;
-                    p.GetComponent<Rigidbody>().useGravity = false;          
+                    p.GetComponent<Rigidbody>().useGravity = false;
                 }
             }
         }
@@ -78,8 +78,6 @@ public class PickupObject : MonoBehaviour
     void CheckDrop()
     {
         float dist = Vector3.Distance(this.transform.position, carriedObject.transform.position);
-
-        print(dist);
 
         if (Input.GetKeyDown(KeyCode.E) || dist >= dropDistance)
         {

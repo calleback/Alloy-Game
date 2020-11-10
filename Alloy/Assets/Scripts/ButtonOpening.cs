@@ -5,35 +5,29 @@ using UnityEngine;
 public class ButtonOpening : MonoBehaviour
 {
     public GameObject button;
-    public GameObject door;
-
-    public Transform doorStartPos;
-    public Transform doorEndPos;
 
     public Transform buttonStartPos;
     public Transform buttonEndPos;
 
-    public float doorSpeed = 3f;
     public float buttonSpeed = 1f;
 
     bool buttonIsPressed;
+    public static float buttonPresses = 0;
   
     void Update()
     {
+        print(buttonPresses);
         //sets the float for the opening speeds.
-        float stepDoor = doorSpeed * Time.deltaTime;
         float stepButton = buttonSpeed * Time.deltaTime;
 
         //if button is pressed, opening animation plays.
         if (buttonIsPressed)
         {
-            door.transform.position = Vector3.MoveTowards(door.transform.position, doorEndPos.position, stepDoor);
             button.transform.position = Vector3.MoveTowards(button.transform.position, buttonEndPos.position, stepButton);
         }
         //if button is not pressed, return door and button to original position
         if (!buttonIsPressed)
         {
-            door.transform.position = Vector3.MoveTowards(door.transform.position, doorStartPos.position, stepDoor);
             button.transform.position = Vector3.MoveTowards(button.transform.position, buttonStartPos.position, stepButton);
         }
     }
@@ -43,6 +37,7 @@ public class ButtonOpening : MonoBehaviour
         if (other.tag == "Player" && !buttonIsPressed || other.tag == "IntObj" && !buttonIsPressed)
         {
             buttonIsPressed = true;
+            buttonPresses++;
         }
     }
     void OnTriggerExit(Collider other)
@@ -50,6 +45,7 @@ public class ButtonOpening : MonoBehaviour
         if (other.tag == "Player" && buttonIsPressed || other.tag == "IntObj" && buttonIsPressed)
         {
             buttonIsPressed = false;
+            buttonPresses--;
         }
     }
 
