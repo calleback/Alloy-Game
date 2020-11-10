@@ -6,6 +6,8 @@ public class DoorOpening : MonoBehaviour
 {
     public GameObject door;
 
+    public int buttonsToOpenDoor;
+
     public Transform doorStartPos;
     public Transform doorEndPos;
 
@@ -22,7 +24,7 @@ public class DoorOpening : MonoBehaviour
     {
         float stepDoor = doorSpeed * Time.deltaTime;
 
-        if (ButtonOpening.buttonPresses == 2)
+        if (ButtonOpening.buttonPresses == buttonsToOpenDoor)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorEndPos.position, stepDoor);
         }
