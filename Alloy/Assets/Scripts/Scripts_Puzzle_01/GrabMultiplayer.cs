@@ -32,7 +32,7 @@ public class GrabMultiplayer : NetworkBehaviour
 
         if (carrying)
         {
-            Carry(carriedObject);
+            CmdCarry(carriedObject);
             CheckDrop();
         }
         else
@@ -41,10 +41,14 @@ public class GrabMultiplayer : NetworkBehaviour
         }
     }
 
-    void Carry(GameObject o)
+    [Command]
+    void CmdCarry(GameObject o)
     {
         o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
+        carriedObject.GetComponent<Rigidbody>().freezeRotation = true;
+        carriedObject.GetComponent<Rigidbody>().useGravity = false;
     }
+
     void Pickup()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -66,12 +70,13 @@ public class GrabMultiplayer : NetworkBehaviour
                 {
                     carrying = true;
                     carriedObject = p.gameObject;
-                    p.GetComponent<Rigidbody>().freezeRotation = true;
-                    p.GetComponent<Rigidbody>().useGravity = false;
+                    //p.GetComponent<Rigidbody>().freezeRotation = true;
+                    //p.GetComponent<Rigidbody>().useGravity = false;
                 }
             }
         }
     }
+
     void CheckDrop()
     {
         float dist = Vector3.Distance(this.transform.position, carriedObject.transform.position);
@@ -83,6 +88,7 @@ public class GrabMultiplayer : NetworkBehaviour
             DropObject();
         }
     }
+
     void DropObject()
     {
         canEnableXhair = true;

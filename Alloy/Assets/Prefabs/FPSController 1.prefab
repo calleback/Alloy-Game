@@ -200,9 +200,9 @@ MonoBehaviour:
   pickupXhair: {fileID: 2601972779293673017}
   holdingXhair: {fileID: 3203347910793557680}
   distance: 2.5
-  smooth: 6
+  smooth: 4
   pickupRange: 3
-  dropDistance: 4.5
+  dropDistance: 7
 --- !u!114 &9219588622227156567
 MonoBehaviour:
   m_ObjectHideFlags: 0

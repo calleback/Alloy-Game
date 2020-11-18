@@ -5,15 +5,18 @@ using Mirror;
 public class SpawnIntCube : NetworkBehaviour
 {
     public GameObject cube;
+    public Transform spawnPoint;
 
-    private void Awake()
+    public void Start()
     {
-        InitiateSpawn();
+        CmdSpawnCube();
+        Debug.Log("CmdSpawnCube");
     }
 
-    [ClientRpc]
-    void InitiateSpawn()
+    [Command]
+    public  void CmdSpawnCube()
     {
-        NetworkServer.Spawn(gameObject, cube);
+        GameObject cubeOBJ = Instantiate(cube, spawnPoint);
+        NetworkServer.Spawn(cubeOBJ);
     }
 }
