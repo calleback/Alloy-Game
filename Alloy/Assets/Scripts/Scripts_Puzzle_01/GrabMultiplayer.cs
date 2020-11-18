@@ -7,7 +7,7 @@ public class GrabMultiplayer : NetworkBehaviour
 {
     public Camera mainCamera;
 
-    bool carrying;
+    static public bool carrying;
     bool canEnableXhair = true;
 
     GameObject carriedObject;
@@ -45,8 +45,8 @@ public class GrabMultiplayer : NetworkBehaviour
     void CmdCarry(GameObject o)
     {
         o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
-        carriedObject.GetComponent<Rigidbody>().freezeRotation = true;
-        carriedObject.GetComponent<Rigidbody>().useGravity = false;
+        //carriedObject.GetComponent<Rigidbody>().freezeRotation = true;
+        //carriedObject.GetComponent<Rigidbody>().useGravity = false;
     }
 
     void Pickup()
@@ -72,14 +72,22 @@ public class GrabMultiplayer : NetworkBehaviour
                     carriedObject = p.gameObject;
                     //p.GetComponent<Rigidbody>().freezeRotation = true;
                     //p.GetComponent<Rigidbody>().useGravity = false;
+                    CmdPickup();
                 }
             }
         }
     }
 
+    [Command]
+    void CmdPickup()
+    {
+        carriedObject.GetComponent<Rigidbody>().freezeRotation = true;
+        carriedObject.GetComponent<Rigidbody>().useGravity = false;
+    }
+
     void CheckDrop()
     {
-        float dist = Vector3.Distance(this.transform.position, carriedObject.transform.position);
+        float dist = Vector3.Distance(transform.position, carriedObject.transform.position);
 
         print(dist);
 
@@ -94,9 +102,15 @@ public class GrabMultiplayer : NetworkBehaviour
         canEnableXhair = true;
         holdingXhair.SetActive(false);
         carrying = false;
+        CmdDropObject();
+        carriedObject = null;
+    }
+
+    [Command]
+    void CmdDropObject()
+    {
         carriedObject.GetComponent<Rigidbody>().freezeRotation = false;
         carriedObject.GetComponent<Rigidbody>().useGravity = true;
-        carriedObject = null;
     }
     void CrosshairCheck()
     {
