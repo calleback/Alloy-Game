@@ -12,11 +12,14 @@ public class ButtonOpening : MonoBehaviour
     public float buttonSpeed = 1f;
 
     bool buttonIsPressed;
+
+    public bool groupBlue;
+    public bool groupOrange;
+
     public static float buttonPresses = 0;
   
     void Update()
     {
-        print(buttonPresses);
         //sets the float for the opening speeds.
         float stepButton = buttonSpeed * Time.deltaTime;
 

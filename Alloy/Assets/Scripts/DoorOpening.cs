@@ -22,6 +22,8 @@ public class DoorOpening : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(ButtonOpening.buttonPresses);
+
         float stepDoor = doorSpeed * Time.deltaTime;
 
         if (ButtonOpening.buttonPresses == buttonsToOpenDoor)
