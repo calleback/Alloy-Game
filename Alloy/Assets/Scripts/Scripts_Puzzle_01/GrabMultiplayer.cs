@@ -28,6 +28,11 @@ public class GrabMultiplayer : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(carriedObject.name);
+        }
+
         CrosshairCheck();
 
         if (carrying)
@@ -41,12 +46,16 @@ public class GrabMultiplayer : NetworkBehaviour
         }
     }
 
-    [Command]
     void CmdCarry(GameObject o)
     {
         o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
-        //carriedObject.GetComponent<Rigidbody>().freezeRotation = true;
-        //carriedObject.GetComponent<Rigidbody>().useGravity = false;
+        CmdCarrySync(carriedObject);
+    }
+
+    [Command]
+    void CmdCarrySync(GameObject o)
+    {
+        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
     }
 
     void Pickup()
@@ -72,24 +81,22 @@ public class GrabMultiplayer : NetworkBehaviour
                     carriedObject = p.gameObject;
                     //p.GetComponent<Rigidbody>().freezeRotation = true;
                     //p.GetComponent<Rigidbody>().useGravity = false;
-                    CmdPickup();
+                    CmdPickup(carriedObject);
                 }
             }
         }
     }
 
     [Command]
-    void CmdPickup()
+    void CmdPickup(GameObject o)
     {
-        carriedObject.GetComponent<Rigidbody>().freezeRotation = true;
-        carriedObject.GetComponent<Rigidbody>().useGravity = false;
+        o.GetComponent<Rigidbody>().freezeRotation = true;
+        o.GetComponent<Rigidbody>().useGravity = false;
     }
 
     void CheckDrop()
     {
         float dist = Vector3.Distance(transform.position, carriedObject.transform.position);
-
-        print(dist);
 
         if (Input.GetKeyDown(KeyCode.E) || dist >= dropDistance)
         {
@@ -102,16 +109,17 @@ public class GrabMultiplayer : NetworkBehaviour
         canEnableXhair = true;
         holdingXhair.SetActive(false);
         carrying = false;
-        CmdDropObject();
+        CmdDropObject(carriedObject);
         carriedObject = null;
     }
 
     [Command]
-    void CmdDropObject()
+    void CmdDropObject(GameObject o)
     {
-        carriedObject.GetComponent<Rigidbody>().freezeRotation = false;
-        carriedObject.GetComponent<Rigidbody>().useGravity = true;
+        o.GetComponent<Rigidbody>().freezeRotation = false;
+        o.GetComponent<Rigidbody>().useGravity = true;
     }
+
     void CrosshairCheck()
     {
         RaycastHit hit;

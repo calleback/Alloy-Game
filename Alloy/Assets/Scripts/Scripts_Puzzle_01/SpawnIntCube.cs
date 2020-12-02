@@ -7,16 +7,23 @@ public class SpawnIntCube : NetworkBehaviour
     public GameObject cube;
     public Transform spawnPoint;
 
-    public void Start()
+    void Update()
     {
-        CmdSpawnCube();
-        Debug.Log("CmdSpawnCube");
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            CmdSpawnCube();
+        }
     }
 
     [Command]
-    public  void CmdSpawnCube()
+    public void CmdSpawnCube()
     {
-        GameObject cubeOBJ = Instantiate(cube, spawnPoint);
-        NetworkServer.Spawn(cubeOBJ);
+        GameObject go = Instantiate(cube, spawnPoint);
+        NetworkServer.Spawn(go);
     }
 }
