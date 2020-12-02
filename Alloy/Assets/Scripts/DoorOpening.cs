@@ -11,6 +11,9 @@ public class DoorOpening : MonoBehaviour
     public Transform doorStartPos;
     public Transform doorEndPos;
 
+    public bool isOrange;
+    public bool isBlue;
+
     public float doorSpeed = 3f;
 
     // Start is called before the first frame update
@@ -22,15 +25,21 @@ public class DoorOpening : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(ButtonOpening.buttonPresses);
-
         float stepDoor = doorSpeed * Time.deltaTime;
 
-        if (ButtonOpening.buttonPresses == buttonsToOpenDoor)
+        if (isBlue && ButtonOpening.bluePresses == buttonsToOpenDoor)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorEndPos.position, stepDoor);
         }
-        else
+        else if (isBlue && ButtonOpening.bluePresses != buttonsToOpenDoor)
+        {
+            door.transform.position = Vector3.MoveTowards(door.transform.position, doorStartPos.position, stepDoor);
+        }
+        if (isOrange && ButtonOpening.orangePresses == buttonsToOpenDoor)
+        {
+            door.transform.position = Vector3.MoveTowards(door.transform.position, doorEndPos.position, stepDoor);
+        }
+        else if (isOrange && ButtonOpening.orangePresses != buttonsToOpenDoor)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorStartPos.position, stepDoor);
         }

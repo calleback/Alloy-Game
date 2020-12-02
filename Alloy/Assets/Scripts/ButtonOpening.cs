@@ -16,8 +16,10 @@ public class ButtonOpening : MonoBehaviour
     public bool groupBlue;
     public bool groupOrange;
 
-    public static float buttonPresses = 0;
-  
+    //public static float buttonPresses = 0;
+    public static float bluePresses = 0;
+    public static float orangePresses = 0;
+
     void Update()
     {
         //sets the float for the opening speeds.
@@ -39,16 +41,32 @@ public class ButtonOpening : MonoBehaviour
     {
         if (other.tag == "Player" && !buttonIsPressed || other.tag == "IntObj" && !buttonIsPressed)
         {
-            buttonIsPressed = true;
-            buttonPresses++;
+            if (groupBlue)
+            {
+                buttonIsPressed = true;
+                bluePresses++;
+            }
+            if (groupOrange)
+            {
+                buttonIsPressed = true;
+                orangePresses++;
+            }
         }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player" && buttonIsPressed || other.tag == "IntObj" && buttonIsPressed)
         {
-            buttonIsPressed = false;
-            buttonPresses--;
+            if (groupBlue)
+            {
+                buttonIsPressed = false;
+                bluePresses--;
+            }
+            if (groupOrange)
+            {
+                buttonIsPressed = false;
+                orangePresses--;
+            }
         }
     }
 
