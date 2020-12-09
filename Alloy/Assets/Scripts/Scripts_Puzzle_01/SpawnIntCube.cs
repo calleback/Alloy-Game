@@ -5,25 +5,25 @@ using Mirror;
 public class SpawnIntCube : NetworkBehaviour
 {
     public GameObject cube;
-    public Transform spawnPoint;
+    //public Transform spawnPoint;
 
     void Update()
     {
-        if(!isLocalPlayer)
+        if(!isServer)
         {
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            CmdSpawnCube();
+            CmdSpawnCube();   
         }
     }
 
     [Command]
     public void CmdSpawnCube()
     {
-        GameObject go = Instantiate(cube, spawnPoint);
+        GameObject go = Instantiate(cube, gameObject.transform);
         NetworkServer.Spawn(go);
     }
 }

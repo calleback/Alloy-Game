@@ -48,6 +48,11 @@ public class GrabMultiplayer : NetworkBehaviour
 
     void CmdCarry(GameObject o)
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
         CmdCarrySync(carriedObject);
     }
@@ -96,6 +101,11 @@ public class GrabMultiplayer : NetworkBehaviour
 
     void CheckDrop()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         float dist = Vector3.Distance(transform.position, carriedObject.transform.position);
 
         if (Input.GetKeyDown(KeyCode.E) || dist >= dropDistance)
