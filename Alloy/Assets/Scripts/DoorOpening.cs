@@ -27,7 +27,7 @@ public class DoorOpening : MonoBehaviour
     {
         float stepDoor = doorSpeed * Time.deltaTime;
 
-        if (isBlue && ButtonOpening.bluePresses == buttonsToOpenDoor)
+        if (isBlue && ButtonOpening.bluePresses >= buttonsToOpenDoor)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorEndPos.position, stepDoor);
         }
@@ -35,7 +35,7 @@ public class DoorOpening : MonoBehaviour
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorStartPos.position, stepDoor);
         }
-        if (isOrange && ButtonOpening.orangePresses == buttonsToOpenDoor)
+        if (isOrange && ButtonOpening.orangePresses >= buttonsToOpenDoor)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorEndPos.position, stepDoor);
         }
