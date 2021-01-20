@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonOpening : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class ButtonOpening : MonoBehaviour
 
     public bool groupBlue;
     public bool groupOrange;
+    public bool levelSkipGroup;
 
     //public static float buttonPresses = 0;
     public static float bluePresses = 0;
     public static float orangePresses = 0;
+    public static float levelSkipPresses = 0;
 
     void Update()
     {
@@ -34,6 +37,12 @@ public class ButtonOpening : MonoBehaviour
         if (!buttonIsPressed)
         {
             button.transform.position = Vector3.MoveTowards(button.transform.position, buttonStartPos.position, stepButton);
+        }
+
+        if (levelSkipPresses == 2)
+        {
+            levelSkipPresses = 0;
+            SceneManager.LoadScene(1);
         }
     }
     //if the player touches the button buttonIsPressed bool is set to true
@@ -51,6 +60,11 @@ public class ButtonOpening : MonoBehaviour
                 buttonIsPressed = true;
                 orangePresses++;
             }
+            if (levelSkipGroup)
+            {
+                buttonIsPressed = true;
+                levelSkipPresses++;
+            }
         }
     }
     void OnTriggerExit(Collider other)
@@ -66,6 +80,11 @@ public class ButtonOpening : MonoBehaviour
             {
                 buttonIsPressed = false;
                 orangePresses--;
+            }
+            if (levelSkipGroup)
+            {
+                buttonIsPressed = false;
+                levelSkipPresses--;
             }
         }
     }
