@@ -76,7 +76,7 @@ public class Interact : MonoBehaviour
                 lookatXhair.SetActive(true);
                 inRangeXhair.SetActive(false);
             }
-            if (hit.transform.tag == "InLever" && hit.distance < interactDist)
+            if (hit.transform.tag == "IntLever" && hit.distance < interactDist)
             {
                 lookatXhair.SetActive(false);
                 inRangeXhair.SetActive(true);

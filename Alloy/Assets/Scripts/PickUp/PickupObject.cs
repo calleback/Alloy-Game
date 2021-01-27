@@ -56,7 +56,7 @@ public class PickupObject : MonoBehaviour
 
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(x, y));
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.distance < pickupRange)
+            if (Physics.Raycast(ray, out hit) && hit.distance < pickupRange && hit.transform.tag == "IntObj")
             {
                 defaultXhair.SetActive(false);
                 lookatXhair.SetActive(false);
