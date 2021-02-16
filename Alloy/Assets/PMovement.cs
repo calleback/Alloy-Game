@@ -6,12 +6,15 @@ public class PMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    float speed;
-    float crouchSpeed;
-    float slideSpeed;
+    float speed = 10f;
 
-    public float gravity = -9.81f;
-    public float jumpHeight = 2f;
+    float gravity = -29.43f;
+    float tempGravity;
+    float wallRunningGravity = -9.82f;
+
+    float jumpHeight = 2.5f;
+    float tempJumpHeight;
+    float wallRunningJumpHeight;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -24,17 +27,21 @@ public class PMovement : MonoBehaviour
     bool isGrounded;
     bool allowAcceleration;
     bool canSlide = true;
+    bool canTempJump = false;
 
     // Update is called once per frame
     void Start()
     {
         playerScale = transform.localScale;
 
-        speed = 10f;
+        wallRunningJumpHeight = jumpHeight * 2f;
     }
 
     void Update()
     {
+        print(gravity);
+        print(jumpHeight);
+
         //checks what ground is fro the bool 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -51,9 +58,10 @@ public class PMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded || Input.GetButtonDown("Jump") && canTempJump)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            canTempJump = false;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -79,6 +87,26 @@ public class PMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             StopCrouch();
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Wall")
+        {
+            tempGravity = gravity;
+            tempJumpHeight = jumpHeight;
+            canTempJump = true;
+            gravity = wallRunningGravity;
+            jumpHeight = wallRunningJumpHeight;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Wall")
+        {
+            gravity = tempGravity;
+            jumpHeight = tempJumpHeight;
         }
     }
 
