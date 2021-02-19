@@ -74,8 +74,9 @@ public class PMovement : MonoBehaviour
 
             StartCoroutine(CrouchTimer());
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
+            StopAllCoroutines();
             StopCrouch();
             canSlide = true;
         }

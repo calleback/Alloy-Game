@@ -8,14 +8,12 @@ public class MouseLook : MonoBehaviour
 
     public Transform playerBody;
 
-    public bool isFrozen = false;
-
     float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     // Update is called once per frame
@@ -29,18 +27,5 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
-
-        if (Input.GetKeyDown(KeyCode.Escape) && !isFrozen)
-        {
-            Time.timeScale = 0;
-            mouseSensitivty = 0;
-            isFrozen = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isFrozen)
-        {
-            Time.timeScale = 1;
-            mouseSensitivty = 100f;
-            isFrozen = false;
-        }
     }
 }
