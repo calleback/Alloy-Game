@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
 {
-    public Transform player;
+    Transform player;
+    private void Start()
+    {
+        player = GameObject.Find("FirstPersonCharacter").transform;
+    }
     void Update()
     {
         transform.LookAt(player);
