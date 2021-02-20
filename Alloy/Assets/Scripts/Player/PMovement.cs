@@ -110,7 +110,6 @@ public class PMovement : MonoBehaviour
             jumpHeight = tempJumpHeight;
         }
     }
-
     private void StartCrouch(Vector3 m)
     {
         transform.localScale = crouchScale;

@@ -17,6 +17,7 @@ public class ButtonOpening : MonoBehaviour
     public bool groupBlue;
     public bool groupOrange;
     public bool levelSkipGroup;
+    public bool soloLevelSkipGroup;
 
     //public static float buttonPresses = 0;
     public static float bluePresses = 0;
@@ -64,6 +65,12 @@ public class ButtonOpening : MonoBehaviour
             {
                 buttonIsPressed = true;
                 levelSkipPresses++;
+            }
+            if (soloLevelSkipGroup)
+            {
+                buttonIsPressed = true;
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(currentSceneIndex + 1);
             }
         }
     }
