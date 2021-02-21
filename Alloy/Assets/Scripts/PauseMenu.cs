@@ -15,8 +15,10 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        FindObjectOfType<MouseLook>().mouseSensitivty = 100f;
         gameIsPaused = false;
         Button btn = resumeButton.GetComponent<Button>();
         btn.onClick.AddListener(ResumeGame);

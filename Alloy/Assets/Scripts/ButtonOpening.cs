@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonOpening : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ButtonOpening : MonoBehaviour
 
     public Transform buttonStartPos;
     public Transform buttonEndPos;
+
+    public GameObject crosshairUI, timerUI;
+    //public GameObject winMenu;
 
     public float buttonSpeed = 1f;
 
@@ -69,8 +73,13 @@ public class ButtonOpening : MonoBehaviour
             if (soloLevelSkipGroup)
             {
                 buttonIsPressed = true;
-                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(currentSceneIndex + 1);
+                Time.timeScale = 0f;
+                FindObjectOfType<MouseLook>().mouseSensitivty = 0f;
+                //winMenu.SetActive(true);
+                crosshairUI.SetActive(false);
+                timerUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }

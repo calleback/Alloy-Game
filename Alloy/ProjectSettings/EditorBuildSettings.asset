@@ -17,6 +17,9 @@ EditorBuildSettings:
     guid: 6a53d090b0c0a4a4d8c1fd3e689b4ae0
 >>>>>>> 187f89a057f23dcb764cf1f55b6612c026470883
   - enabled: 1
+    path: Assets/Scenes/ParkourLvl3.unity
+    guid: 58ea2fccb262c604193ee9edca828096
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 3f2956e86182f934c9bbf0871f409130
   - enabled: 1
