@@ -6,8 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Lighting 1.unity
     guid: 3f81afdc0f5c0564bada41f5412f0dd9
+=======
+    path: Assets/Scenes/ParkourLvl1.unity
+    guid: 5eda3c55acc6c8e43970d28123cdc3a0
+  - enabled: 1
+    path: Assets/Scenes/ParkourLvl2.unity
+    guid: 6a53d090b0c0a4a4d8c1fd3e689b4ae0
+>>>>>>> 187f89a057f23dcb764cf1f55b6612c026470883
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 3f2956e86182f934c9bbf0871f409130

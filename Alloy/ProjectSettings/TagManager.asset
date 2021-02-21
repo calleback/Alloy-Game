@@ -6,6 +6,7 @@ TagManager:
   tags:
   - IntObj
   - IntLever
+  - Wall
   layers:
   - Default
   - TransparentFX
