@@ -1,33 +1,50 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using TMPro;
-//using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-//public class JoinLobbyMenu : MonoBehaviour
-//{
-//    [SerializeField] private NetworkManagerLobby networkManager = null;
+public class JoinLobbyMenu : MonoBehaviour
+{
+    [SerializeField] private NetworkManagerLobby networkManager = null;
 
-//    [Header("UI")]
-//    [SerializeField] private GameObject landingPanel = null;
-//    [SerializeField] private TMP_InputField ipAddressInputField = null;
-//    [SerializeField] private Button JoinButton = null;
+    [Header("UI")]
+    [SerializeField] private GameObject landingPagePanel = null;
+    [SerializeField] private TMP_InputField ipAddressInputField = null;
+    [SerializeField] private Button JoinButton = null;
 
-//    //private void OnEnable()
-//    //{
-//    //    NetworkManagerLobby.OnClientConnected += HandleClie
-//    //}
+    private void OnEnable()
+    {
+        NetworkManagerLobby.OnClientConnected += HandleClientConnected;
+        NetworkManagerLobby.OnClientDisconnected += HandleClientDisconnected;
+    }
 
+    private void OnDisable()
+    {
+        NetworkManagerLobby.OnClientConnected -= HandleClientConnected;
+        NetworkManagerLobby.OnClientDisconnected -= HandleClientDisconnected;
+    }
 
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-        
-//    }
+    public void JoinLobby()
+    {
+        string ipAddress = ipAddressInputField.text;
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-        
-//    }
-//}
+        networkManager.networkAddress = ipAddress;
+        networkManager.StartClient();
+
+        JoinButton.interactable = false;
+    }
+
+    private void HandleClientConnected()
+    {
+        JoinButton.interactable = true;
+
+        gameObject.SetActive(false);
+        landingPagePanel.SetActive(false);
+    }
+
+    private void HandleClientDisconnected()
+    {
+        JoinButton.interactable = true;
+    }
+}
