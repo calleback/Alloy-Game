@@ -3141,12 +3141,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254853755}
-  m_LocalRotation: {x: 0.41967794, y: 0.10671324, z: -0.049761176, w: 0.9000037}
-  m_LocalPosition: {x: 1.5480385, y: 1.0124545, z: 2.0449257}
+  m_LocalRotation: {x: -0.0000005364418, y: 0.23831467, z: -0.28401208, w: 0.9287321}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8651767181850664544}
-  m_RootOrder: 3
+  m_Father: {fileID: 3597380564317383226}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: 13.524, z: 0}
 --- !u!114 &254853757
 MonoBehaviour:
@@ -3168,7 +3168,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 5000
+  m_Intensity: 2500
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -3271,7 +3271,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5000
+  m_Intensity: 2500
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9099,7 +9099,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-152104
+  m_Name: pb_Mesh-346024
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13923,6 +13923,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030332791931358673, guid: f0f29d4a7b112254db43bb5e2c2aadd0, type: 3}
   m_PrefabInstance: {fileID: 1591884361}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1017004216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3363194889818543175, guid: 4341f8cebe7af03468d5a78438b74cd8, type: 3}
+  m_PrefabInstance: {fileID: 1847537065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017004220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017004216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773a68647f763ca488dff03b44618c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1037035350
 GameObject:
   m_ObjectHideFlags: 0
@@ -15273,12 +15290,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090084067}
-  m_LocalRotation: {x: -0.24905042, y: 0.7322162, z: -0.34143728, w: -0.5340918}
-  m_LocalPosition: {x: 1.5480385, y: 1.0124545, z: 2.0449257}
+  m_LocalRotation: {x: 0.0000007301569, y: 0.40358013, z: -0.48096734, w: -0.7783274}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8651767181850664544}
-  m_RootOrder: 4
+  m_Father: {fileID: 3597380564317383226}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: 252.215, z: 0}
 --- !u!114 &1090084069
 MonoBehaviour:
@@ -15300,7 +15317,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 5000
+  m_Intensity: 2500
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -15403,7 +15420,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5000
+  m_Intensity: 2500
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -32182,7 +32199,9 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 1.5480385, y: 1.0124545, z: 2.0449257}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 254853756}
+  - {fileID: 1090084068}
   m_Father: {fileID: 8651767181850664544}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
@@ -32206,7 +32225,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 5000
+  m_Intensity: 2500
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -32325,7 +32344,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5000
+  m_Intensity: 2500
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -32437,8 +32456,6 @@ Transform:
   - {fileID: 3597380564317383226}
   - {fileID: 1343886292859191100}
   - {fileID: 6764314237110658253}
-  - {fileID: 254853756}
-  - {fileID: 1090084068}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
