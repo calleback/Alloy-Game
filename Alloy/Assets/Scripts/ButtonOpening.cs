@@ -10,8 +10,7 @@ public class ButtonOpening : MonoBehaviour
 
     public Transform buttonStartPos;
     public Transform buttonEndPos;
-
-    public GameObject crosshairUI, timerUI;
+    
     //public GameObject winMenu;
 
     public float buttonSpeed = 1f;
@@ -76,8 +75,6 @@ public class ButtonOpening : MonoBehaviour
                 Time.timeScale = 0f;
                 FindObjectOfType<MouseLook>().mouseSensitivty = 0f;
                 //winMenu.SetActive(true);
-                crosshairUI.SetActive(false);
-                timerUI.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
