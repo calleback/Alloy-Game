@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    private GameObject noMoreLevelsMenu;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
