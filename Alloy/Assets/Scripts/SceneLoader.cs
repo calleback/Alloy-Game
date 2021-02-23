@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     private GameObject noMoreLevelsMenu;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -38,5 +39,10 @@ public class SceneLoader : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void StartCOOP()
+    {
+        SceneManager.LoadScene(4);
     }
 }

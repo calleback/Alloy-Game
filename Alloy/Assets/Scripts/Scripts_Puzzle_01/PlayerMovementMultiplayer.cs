@@ -22,6 +22,8 @@ public class PlayerMovementMultiplayer : NetworkBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (isLocalPlayer)
         {
             playerCamera.SetActive(true);
